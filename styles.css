@@ -70,3 +70,7 @@
     border-color: var(--golden-yellow);
     border-width: 3px;
   }
+
+  .hidden {
+    display: none;
+  }
