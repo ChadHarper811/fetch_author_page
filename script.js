@@ -10,48 +10,48 @@ fetch("https://cdn.freecodecamp.org/curriculum/news-author-page/authors.json")
     .then((res) => res.json())
     .then((data) => {
         authorDataArr = data;
-        // displayAuthors(authorDataArr.slice(startingIndex, endingIndex));
-        displayAuthors(authorDataArr);
+        displayAuthors(authorDataArr.slice(startingIndex, endingIndex));
+        // displayAuthors(authorDataArr);
     })
     .catch((err) => {console.error(`There was an error: ${err}`)});
 
-// const fetchMoreAuthors = () => {
-//     startingIndex += 8;
-//     endingIndex += 8;
-//     displayAuthors(authorDataArr.slice(startingIndex, endingIndex));
+const fetchMoreAuthors = () => {
+    startingIndex += 8;
+    endingIndex += 8;
+    displayAuthors(authorDataArr.slice(startingIndex, endingIndex));
+    if (authorDataArr.length <= endingIndex) {}
+};
+
+// const loadMoreAuthors = () => {
+//     if (endingIndex + 8 >= authorDataArr.length) {
+//         endingIndex = authorDataArr.length
+//         loadLessBtn.classList.remove("hidden");
+//         loadMoreBtn.classList.add("hidden");
+//     } else if (8 <= endingIndex <= authorDataArr.length) {
+//         endingIndex += 8;
+//         loadLessBtn.classList.remove("hidden");
+//     }
+
+//     for (let i = 0; i < endingIndex; i++) {
+//         let cardToDisplay = document.getElementById(i);
+//         cardToDisplay.classList.remove("hidden");
+//     }
 // };
 
-const loadMoreAuthors = () => {
-    if (endingIndex + 8 >= authorDataArr.length) {
-        endingIndex = authorDataArr.length
-        loadLessBtn.classList.remove("hidden");
-        loadMoreBtn.classList.add("hidden");
-    } else if (8 <= endingIndex <= authorDataArr.length) {
-        endingIndex += 8;
-        loadLessBtn.classList.remove("hidden");
-    }
+// const loadLessAuthors = () => {
+//     if (endingIndex - 8 <= 8) {
+//         endingIndex = 8;
+//         loadLessBtn.classList.add("hidden");
+//         loadMoreBtn.classList.remove("hidden");
+//     } else if (8 <= endingIndex <= authorDataArr.length) {
+//         endingIndex -= 8;
+//     }
 
-    for (let i = 0; i < endingIndex; i++) {
-        let cardToDisplay = document.getElementById(i);
-        cardToDisplay.classList.remove("hidden");
-    }
-};
-
-const loadLessAuthors = () => {
-    if (endingIndex - 8 <= 8) {
-        endingIndex = 8;
-        loadLessBtn.classList.add("hidden");
-        loadMoreBtn.classList.remove("hidden");
-    } else if (8 <= endingIndex <= authorDataArr.length) {
-        endingIndex -= 8;
-    }
-
-    for (let i = endingIndex; i < authorDataArr.length; i++) {
-        let cardToHide = document.getElementById(i);
-        cardToHide.classList.add("hidden");
-    }
-
-};
+//     for (let i = endingIndex; i < authorDataArr.length; i++) {
+//         let cardToHide = document.getElementById(i);
+//         cardToHide.classList.add("hidden");
+//     }
+// };
 
 const displayAuthors = (authors) => {
     authors.forEach(({author, image, url, bio}, index) => {
@@ -66,7 +66,7 @@ const displayAuthors = (authors) => {
     });
 };
 
-// loadMoreBtn.addEventListener("click", fetchMoreAuthors);
+loadMoreBtn.addEventListener("click", fetchMoreAuthors);
 
-loadMoreBtn.addEventListener("click", loadMoreAuthors);
-loadLessBtn.addEventListener("click", loadLessAuthors);
+// loadMoreBtn.addEventListener("click", loadMoreAuthors);
+// loadLessBtn.addEventListener("click", loadLessAuthors);
